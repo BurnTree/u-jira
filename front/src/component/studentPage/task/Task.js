@@ -6,11 +6,13 @@ import Button from "reactstrap/es/Button";
 import FileRead from "./FileRead";
 
 class Task extends Component {
-
-    state = {
-        project: null,
-        task: null,
-        status: ""
+    constructor(props) {
+        super(props);
+        this.state = {
+            project: null,
+            task: null,
+            status: ""
+        }
     }
 
     loadProject = (idProject) => {

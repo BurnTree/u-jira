@@ -5,21 +5,23 @@ import {Col, Container, Row} from "reactstrap";
 import GroupItem from "./GroupItem";
 
 class Groups extends Component {
-
-    state = {
-        groups: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            groups: null
+        }
     }
 
     loadGroups = () => {
-        axios.get('http://localhost:8080/api/group/teacher',{params: {id: this.props.user.id}})
+        axios.get('http://localhost:8080/api/group/teacher', {params: {id: this.props.user.id}})
             .then(res => this.setState({groups: res.data}))
-            .catch(error=> console.log('error: ', error))
+            .catch(error => console.log('error: ', error))
 
     }
 
     render() {
-        if(!this.state.groups && this.props.user.id) this.loadGroups()
-        if(!this.state.groups) return null
+        if (!this.state.groups && this.props.user.id) this.loadGroups()
+        if (!this.state.groups) return null
         console.log(this.state.groups)
         const columns = this.state.groups.map((group) => <Col xs="4" className="p-5">
             <GroupItem group={group}/>
@@ -36,4 +38,4 @@ class Groups extends Component {
     }
 }
 
-export default connect((state)=> ({user: state.user}))(Groups);
+export default connect((state) => ({user: state.user}))(Groups);

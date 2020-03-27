@@ -7,11 +7,13 @@ import {connect} from "react-redux";
 
 class StudentList extends Component {
 
-    state = {
-        students: null,
-        group: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            students: null,
+            group: null
+        }
     }
-
 
     loadGroup = (id) => {
         axios.get('http://localhost:8080/api/group/get', {params: {id}})

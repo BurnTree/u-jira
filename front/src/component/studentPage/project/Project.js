@@ -7,9 +7,11 @@ import {matchPath} from "react-router";
 import {NavLink} from "react-router-dom";
 
 class Project extends Component {
-
-    state = {
-        tasks: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            tasks: null
+        }
     }
 
     loadTasks = (id) => {
@@ -18,15 +20,15 @@ class Project extends Component {
             .catch(error => console.log('error: ', error))
     }
 
-    onClick(idP, idT){
-        history.push("/home/"+idP+"/"+idT)
+    onClick(idP, idT) {
+        history.push("/home/" + idP + "/" + idT)
     }
 
     render() {
         let id;
         const match = matchPath(window.location.pathname, {path: '/home/:idProject'});
         if (match)
-            id  = match.params.idProject
+            id = match.params.idProject
         else return null
         if (!this.state.tasks) {
             this.loadTasks(id)
@@ -36,7 +38,7 @@ class Project extends Component {
             <tr key={task.id} onClick={() => this.onClick(id, task.id)}>
                 <td>{task.name}</td>
                 <td>{task.description}</td>
-                <td><NavLink to={"/home/"+id+"/"+task.id}>
+                <td><NavLink to={"/home/" + id + "/" + task.id}>
                     <Button>
                         Go to task
                     </Button>

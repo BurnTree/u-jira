@@ -12,10 +12,13 @@ import history from '../../history';
 
 class Auth extends Component {
 
-    state = {
-        login: '',
-        password: '',
-        role: STUDENT
+    constructor(props) {
+        super(props);
+        this.state = {
+            login: '',
+            password: '',
+            role: STUDENT
+        }
     }
 
     changeRole = (role) => {

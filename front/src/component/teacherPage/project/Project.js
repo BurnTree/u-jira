@@ -6,13 +6,15 @@ import RowTask from "./RowTask";
 import ModalAddTask from "./ModalAddTask";
 
 class Project extends Component {
-
-    state = {
-        project: null,
-        tasks: null,
-        student: null,
-        modal: false,
-        persmissionOnCreated: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            project: null,
+            tasks: null,
+            student: null,
+            modal: false,
+            persmissionOnCreated: false
+        }
     }
 
     toggle = () => {

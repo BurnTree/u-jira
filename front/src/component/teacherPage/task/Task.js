@@ -9,11 +9,14 @@ import Input from "reactstrap/es/Input";
 
 class Task extends Component {
 
-    state = {
-        project: null,
-        task: null,
-        status: "",
-        attachments: []
+    constructor(props){
+        super(props);
+        this.state = {
+            project: null,
+            task: null,
+            status: "",
+            attachments: []
+        }
     }
 
     loadProject = (idProject) => {
