@@ -13,8 +13,5 @@ public interface StudentService {
     Student add(Student student);
     void delete(int id);
 
-    Optional<Student> auth(String login, String password);
-    List<Teacher> findTeachersStudent(int id);
-    List<Student> findStudentByGroup(int idGroup);
-    List<Student> getSortedStudent(int idTeacher, int idGroup);
+//    List<Student> getSortedStudent(int idTeacher, int idGroup);
 }

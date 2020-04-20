@@ -12,8 +12,5 @@ public interface TaskService {
     Task add(Task task);
     void delete(int id);
 
-    List<Task> findAllByProject(int projectId);
-    String getStatusName(int idStatus);
-    boolean permissionOnCreatedTask(int idProject);
-    float getKoefRate(int idTask);
+//    float getKoefRate(int idTask);
 }

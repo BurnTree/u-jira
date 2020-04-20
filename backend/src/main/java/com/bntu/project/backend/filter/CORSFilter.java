@@ -9,12 +9,6 @@ import java.io.IOException;
 
 @Component
 public class CORSFilter implements Filter {
-
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
@@ -31,8 +25,4 @@ public class CORSFilter implements Filter {
         }
         filterChain.doFilter(request, response);
     }
-
-    @Override
-    public void destroy() {}
-
 }

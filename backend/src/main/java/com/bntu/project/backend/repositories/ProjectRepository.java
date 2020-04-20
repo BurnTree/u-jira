@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
-    List<Project> findAllByStudent(int id);
-    Project findProjectByStudentAndTeacher(int idStudent, int idTeacher);
+    List<Project> findAllByStudentId(int studentId);
+    List<Project> findAllByStudentIdAndSubjectTeacherId(int studentId, int teacherId);
+    List<Project> findAllBySubjectTeacherId(int teacherId);
 }

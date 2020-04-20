@@ -13,7 +13,7 @@ public interface ProjectService {
     void delete(int id);
 
     List<Project> getAllByStudent(int id);
-    Project getProjectByStudetnAndTeacher(int idStudent, int idTeacher);
-    String getStatusName(int idStatus);
-    float getRatingProject(int idProject);
+    List<Project> getByStudentAndTeacher(int studentId, int teacherId);
+    List<Project> getByTeacher(int teacherId);
+//    float getRatingProject(int idProject);
 }

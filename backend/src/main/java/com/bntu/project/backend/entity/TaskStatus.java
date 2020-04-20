@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "group_student")
-public class Group {
-
-    private int id;
-    private String name;
-
+@Table(name = "task_status")
+public class TaskStatus {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "name")
+    private Integer name;
+
     public int getId() {
         return id;
     }
@@ -19,12 +19,10 @@ public class Group {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
-    public String getName() {
+    public Integer getName() {
         return name;
     }
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
@@ -32,9 +30,9 @@ public class Group {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return id == group.id &&
-                Objects.equals(name, group.name);
+        TaskStatus that = (TaskStatus) o;
+        return id == that.id &&
+                Objects.equals(name, that.name);
     }
 
     @Override

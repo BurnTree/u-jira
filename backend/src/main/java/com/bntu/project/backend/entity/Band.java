@@ -7,13 +7,15 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "teacher")
-public class Teacher {
+@Table(name = "band")
+public class Band {
     @Id
     @Column(name = "id")
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "number")
+    private String number;
 
     public int getId() {
         return id;
@@ -29,17 +31,25 @@ public class Teacher {
         this.name = name;
     }
 
+    public String getNumber() {
+        return number;
+    }
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Teacher teacher = (Teacher) o;
-        return id == teacher.id &&
-                Objects.equals(name, teacher.name);
+        Band band = (Band) o;
+        return id == band.id &&
+                Objects.equals(name, band.name) &&
+                Objects.equals(number, band.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, number);
     }
 }

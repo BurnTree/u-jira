@@ -1,9 +1,7 @@
 package com.bntu.project.backend.service.impl;
 
 import com.bntu.project.backend.entity.Project;
-import com.bntu.project.backend.entity.Task;
 import com.bntu.project.backend.repositories.ProjectRepository;
-import com.bntu.project.backend.repositories.StatusProjectRepository;
 import com.bntu.project.backend.repositories.TaskRepository;
 import com.bntu.project.backend.service.ProjectService;
 import com.bntu.project.backend.service.TaskService;
@@ -18,9 +16,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ProjectRepository projectRepo;
-
-    @Autowired
-    private StatusProjectRepository statusRepo;
 
     @Autowired
     private TaskService taskService;
@@ -55,22 +50,20 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> getAllByStudent(int id) {
-        return projectRepo.findAllByStudent(id);
+        return projectRepo.findAllByStudentId(id);
     }
 
-    @Override
-    public Project getProjectByStudetnAndTeacher(int idStudent, int idTeacher) {
-        return projectRepo.findProjectByStudentAndTeacher(idStudent,idTeacher);
+    public List<Project> getByStudentAndTeacher(int studentId, int teacherId) {
+        return projectRepo.findAllByStudentIdAndSubjectTeacherId(studentId, teacherId);
     }
 
-    @Override
-    public String getStatusName(int idStatus){
-        return statusRepo.findById(idStatus).get().getName();
+    public List<Project> getByTeacher(int teacherId) {
+        return projectRepo.findAllBySubjectTeacherId(teacherId);
     }
 
-    @Override
-    public float getRatingProject(int idProject) {
-        Task task = taskRepo.findByProjectAndStatus(idProject, 3);
-        return taskService.getKoefRate(task.getId());
-    }
+//    @Override
+//    public float getRatingProject(int idProject) {
+//        Task task = taskRepo.findByProjectAndStatus(idProject, 3);
+//        return taskService.getKoefRate(task.getId());
+//    }
 }

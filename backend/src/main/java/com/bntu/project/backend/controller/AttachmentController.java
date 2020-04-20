@@ -30,11 +30,6 @@ public class AttachmentController {
         return attachmentRepo.findById(id);
     }
 
-    @GetMapping(value = "/task")
-    public List<Attachment> getByTask(@RequestParam(name = "id") int id) {
-        return attachmentRepo.findAllByTask(id);
-    }
-
     @PostMapping(value = "/add")
     public ResponseEntity<Attachment> add(@RequestBody Attachment attachment) {
         return new ResponseEntity<>(attachmentRepo.save(attachment), HttpStatus.OK);

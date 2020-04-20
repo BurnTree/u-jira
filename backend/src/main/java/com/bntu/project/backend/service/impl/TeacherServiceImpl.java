@@ -40,11 +40,4 @@ public class TeacherServiceImpl implements TeacherService {
         teacherRepo.deleteById(id);
     }
 
-    @Override
-    public Optional<Teacher> auth(String login, String password) {
-        Teacher teacher = teacherRepo.findByLogin(login);
-        if (teacher == null) return Optional.empty();
-        if (password.equals(teacher.getPassword())) return Optional.of(teacher);
-        return Optional.empty();
-    }
 }

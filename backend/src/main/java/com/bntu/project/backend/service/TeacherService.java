@@ -11,6 +11,4 @@ public interface TeacherService {
     Teacher update(Teacher upTeacher);
     Teacher add(Teacher teacher);
     void delete(int id);
-
-    Optional<Teacher> auth(String login, String password);
 }

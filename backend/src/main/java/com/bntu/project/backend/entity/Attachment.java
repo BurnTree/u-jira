@@ -1,20 +1,23 @@
 package com.bntu.project.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
+@Table(name = "attachment")
 public class Attachment {
-    private int id;
-    private byte[] file;
-    private int task;
-
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "file")
+    private byte[] file;
+    @ManyToOne
+    @JoinColumn(name = "task")
+    private Task task;
+
     public int getId() {
         return id;
     }
@@ -22,8 +25,13 @@ public class Attachment {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "file", nullable = true)
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public byte[] getFile() {
         return file;
     }
@@ -31,12 +39,10 @@ public class Attachment {
         this.file = file;
     }
 
-    @Basic
-    @Column(name = "task", nullable = true)
-    public int getTask() {
+    public Task getTask() {
         return task;
     }
-    public void setTask(int task) {
+    public void setTask(Task task) {
         this.task = task;
     }
 

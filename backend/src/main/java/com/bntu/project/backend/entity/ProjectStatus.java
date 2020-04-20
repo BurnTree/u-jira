@@ -1,33 +1,28 @@
 package com.bntu.project.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Status {
-    private int id;
-    private String name;
-
+@Table(name = "project_status")
+public class ProjectStatus {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "name")
+    private Integer name;
+
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 30)
-    public String getName() {
+    public Integer getName() {
         return name;
     }
-
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
@@ -35,9 +30,9 @@ public class Status {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Status status = (Status) o;
-        return id == status.id &&
-                Objects.equals(name, status.name);
+        ProjectStatus that = (ProjectStatus) o;
+        return id == that.id &&
+                Objects.equals(name, that.name);
     }
 
     @Override
