@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {Switch} from "react-router-dom";
 import Header from '../header/Header'
 import history from "../../history";
 import {STUDENT, TEACHER} from "../../helpers";
