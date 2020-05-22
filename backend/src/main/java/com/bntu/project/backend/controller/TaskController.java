@@ -26,8 +26,8 @@ public class TaskController {
         return taskService.findAll();
     }
 
-    @GetMapping(value = "/get")
-    public Optional<Task> findById(@RequestParam(name = "id") int id) {
+    @GetMapping(value = "/{id}")
+    public Optional<Task> findById(@PathVariable int id) {
         return taskService.findById(id);
     }
 

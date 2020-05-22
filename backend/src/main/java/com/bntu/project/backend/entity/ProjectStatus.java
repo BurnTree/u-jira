@@ -10,7 +10,7 @@ public class ProjectStatus {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
-    private Integer name;
+    private String name;
 
     public int getId() {
         return id;
@@ -19,10 +19,10 @@ public class ProjectStatus {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
