@@ -26,8 +26,8 @@ public class ProjectController {
         return projectService.findAll();
     }
 
-    @GetMapping(value = "/get")
-    public Optional<Project> findById(@RequestParam(name = "id") int id) {
+    @GetMapping(value = "/{id}")
+    public Optional<Project> findById(@PathVariable int id) {
         return projectService.findById(id);
     }
 

@@ -3,10 +3,7 @@ package com.bntu.project.backend.controller;
 import com.bntu.project.backend.entity.Teacher;
 import com.bntu.project.backend.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +24,8 @@ public class TeacherController {
         return teacherService.findAll();
     }
 
-    @GetMapping(value = "/get")
-    public Optional<Teacher> findById(@RequestParam(name = "id") int id){
+    @GetMapping(value = "/{id}")
+    public Optional<Teacher> findById(@PathVariable int id){
         return teacherService.findById(id);
     }
 

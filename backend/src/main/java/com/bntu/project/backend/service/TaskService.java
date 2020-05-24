@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TaskService {
-    List<Task> findAll();
-    Optional<Task> findById(int id);
+    List<Task> findAll(int projectId);
+    Optional<Task> findById(int taskId, int project);
     Task update(Task upTask);
-    Task add(Task task);
-    void delete(int id);
+    Task add(int projectId, Task task);
+    void delete(int taskId, int project);
 
 //    float getKoefRate(int idTask);
 }

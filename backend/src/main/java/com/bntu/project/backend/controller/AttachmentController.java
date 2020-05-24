@@ -25,8 +25,8 @@ public class AttachmentController {
         return attachmentRepo.findAll();
     }
 
-    @GetMapping(value = "/get")
-    public Optional<Attachment> getById(@RequestParam(name = "id") int id) {
+    @GetMapping(value = "/{id}")
+    public Optional<Attachment> getById(@PathVariable int id) {
         return attachmentRepo.findById(id);
     }
 

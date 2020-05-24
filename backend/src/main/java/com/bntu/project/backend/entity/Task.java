@@ -1,30 +1,43 @@
 package com.bntu.project.backend.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "task")
 public class Task {
-    @Id
-    @Column(name = "id")
-    private int id;
+
+
+    @EmbeddedId
+    private TaskPK id;
+
+//    @ManyToOne
+//    @JoinColumn(name = "project")
+//    private Project project;
+
     @Column(name = "name")
     private String name;
-    @ManyToOne
-    @JoinColumn (name = "project")
-    private Project project;
+
     @ManyToOne
     @JoinColumn (name = "status")
+    @ColumnDefault("1")
     private TaskStatus status;
 
-    public int getId() {
+    public TaskPK getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(TaskPK id) {
         this.id = id;
     }
 
+//    public Project getProject() {
+//        return project;
+//    }
+//    public void setProject(Project project) {
+//        this.project = project;
+//    }
     public String getName() {
         return name;
     }
@@ -32,12 +45,6 @@ public class Task {
         this.name = name;
     }
 
-    public Project getProject() {
-        return project;
-    }
-    public void setProject(Project project) {
-        this.project = project;
-    }
 
     public TaskStatus getStatus() {
         return status;

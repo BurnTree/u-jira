@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/task")
+@RequestMapping("/api/project/{projectId}/task")
 public class TaskController {
 
     private TaskService taskService;
@@ -21,29 +21,28 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping(value = "/all")
-    public List<Task> getAll() {
-        return taskService.findAll();
+    @GetMapping
+    public List<Task> getAll(@PathVariable int projectId) {
+        return taskService.findAll(projectId);
     }
 
-    @GetMapping(value = "/{id}")
-    public Optional<Task> findById(@PathVariable int id) {
-        return taskService.findById(id);
+    @GetMapping(value = "/{taskId}")
+    public Optional<Task> findById(@PathVariable int projectId, @PathVariable int taskId) {
+        return taskService.findById(taskId, projectId);
     }
-
-    @PutMapping(value = "/put")
-    public ResponseEntity<Task> update(@RequestBody Task task) {
-        return new ResponseEntity<>(taskService.update(task), HttpStatus.OK);
-    }
+//    @PutMapping(value = "/put")
+//    public ResponseEntity<Task> update(@RequestBody Task task) {
+//        return new ResponseEntity<>(taskService.update(task), HttpStatus.OK);
+//    }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<Task> add(@RequestBody Task task) {
-        return new ResponseEntity<>(taskService.add(task), HttpStatus.OK);
+    public ResponseEntity<Task> add(@PathVariable int projectId, @RequestBody Task task) {
+        return new ResponseEntity<>(taskService.add(projectId, task), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete")
-    public ResponseEntity<String> delete(@RequestParam(name = "id") int id) {
-        taskService.delete(id);
-        return new ResponseEntity<>("Delete success", HttpStatus.OK);
-    }
+//    @DeleteMapping(value = "/delete")
+//    public ResponseEntity<String> delete(@RequestParam(name = "id") int id) {
+//        taskService.delete(id);
+//        return new ResponseEntity<>("Delete success", HttpStatus.OK);
+//    }
 }

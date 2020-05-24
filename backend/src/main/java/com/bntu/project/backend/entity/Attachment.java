@@ -14,9 +14,9 @@ public class Attachment {
     private String name;
     @Column(name = "file")
     private byte[] file;
-    @ManyToOne
-    @JoinColumn(name = "task")
-    private Task task;
+//    @ManyToOne
+//    @JoinColumn(name = "task")
+//    private Task task;
 
     public int getId() {
         return id;
@@ -39,12 +39,12 @@ public class Attachment {
         this.file = file;
     }
 
-    public Task getTask() {
-        return task;
-    }
-    public void setTask(Task task) {
-        this.task = task;
-    }
+//    public Task getTask() {
+//        return task;
+//    }
+//    public void setTask(Task task) {
+//        this.task = task;
+//    }
 
     @Override
     public boolean equals(Object o) {

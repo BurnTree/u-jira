@@ -1,6 +1,9 @@
 package com.bntu.project.backend.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -12,16 +15,17 @@ public class TaskStatus {
     @Column(name = "name")
     private String name;
 
-    public int getId() {
-        return id;
+    public TaskStatus() {
     }
-    public void setId(int id) {
+
+    public TaskStatus(int id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
