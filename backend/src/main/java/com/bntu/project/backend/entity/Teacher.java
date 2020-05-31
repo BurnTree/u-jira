@@ -14,6 +14,10 @@ public class Teacher {
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "psw")
+    private String psw;
 
     public int getId() {
         return id;
@@ -27,6 +31,20 @@ public class Teacher {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPsw() {
+        return psw;
+    }
+    public void setPsw(String psw) {
+        this.psw = psw;
     }
 
     @Override

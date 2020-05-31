@@ -1,6 +1,9 @@
 package com.bntu.project.backend.service.impl;
 
+import com.bntu.project.backend.dto.AuthDto;
+import com.bntu.project.backend.dto.UserDto;
 import com.bntu.project.backend.entity.Teacher;
+import com.bntu.project.backend.helpers.Role;
 import com.bntu.project.backend.repositories.TeacherRepository;
 import com.bntu.project.backend.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +43,12 @@ public class TeacherServiceImpl implements TeacherService {
         teacherRepo.deleteById(id);
     }
 
+    @Override
+    public UserDto auth(AuthDto auth) {
+        Teacher teacher = teacherRepo.getByLoginAndPsw(auth.getLogin(), auth.getPsw());
+        UserDto tchDto = new UserDto();
+        tchDto.setName(teacher.getName());
+        tchDto.setRole(Role.TEACHER);
+        return tchDto;
+    }
 }

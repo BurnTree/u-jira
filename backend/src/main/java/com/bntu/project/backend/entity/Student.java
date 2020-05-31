@@ -14,6 +14,10 @@ public class Student {
     @ManyToOne
     @JoinColumn (name = "band")
     private Band band;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "psw")
+    private String psw;
 
     public int getId() {
         return id;
@@ -36,13 +40,30 @@ public class Student {
         this.band = band;
     }
 
+    public String getLogin() {
+        return login;
+    }
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPsw() {
+        return psw;
+    }
+    public void setPsw(String psw) {
+        this.psw = psw;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return id == student.id &&
-                Objects.equals(name, student.name);
+                Objects.equals(name, student.name) &&
+                Objects.equals(band, student.band) &&
+                Objects.equals(login, student.login) &&
+                Objects.equals(psw, student.psw);
     }
 
     @Override

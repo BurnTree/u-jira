@@ -1,25 +1,23 @@
 package com.bntu.project.backend.service.impl;
 
-import com.bntu.project.backend.entity.*;
+import com.bntu.project.backend.dto.AuthDto;
+import com.bntu.project.backend.dto.UserDto;
+import com.bntu.project.backend.entity.Student;
+import com.bntu.project.backend.helpers.Role;
 import com.bntu.project.backend.repositories.StudentRepository;
 import com.bntu.project.backend.repositories.TaskRepository;
-import com.bntu.project.backend.repositories.TeacherRepository;
-import com.bntu.project.backend.service.ProjectService;
 import com.bntu.project.backend.service.StudentService;
-import com.bntu.project.backend.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepo;
-
-    @Autowired
-    private TeacherRepository teacherRepo;
 
 
     @Autowired
@@ -50,6 +48,14 @@ public class StudentServiceImpl implements StudentService {
         studentRepo.deleteById(id);
     }
 
+    @Override
+    public UserDto auth(AuthDto authDto) {
+        Student student = studentRepo.getByLoginAndPsw(authDto.getLogin(), authDto.getPsw());
+        UserDto studDto = new UserDto();
+        studDto.setName(student.getName());
+        studDto.setRole(Role.STUDENT);
+        return studDto;
+    }
 
 
 //    class SortByRating implements Comparator<Student> {
