@@ -1,22 +1,18 @@
 import React, {Component} from 'react';
 import {Router} from "react-router-dom";
-import {Provider, ReactReduxContext} from "react-redux"
-import {CookiesProvider} from 'react-cookie';
-import {ConnectedRouter} from "connected-react-router";
+import {Provider} from "react-redux"
 import store from './redux/store/index'
-import MyRoute from './component/route/MyRoute';
+import RouteComponent from './component/route/RouteComponent';
 import history from './history'
 
 class App extends Component {
     render() {
         return (
-            <CookiesProvider>
-                <Router history={history}>
-                    <Provider store={store}>
-                        <MyRoute/>
-                    </Provider>
-                </Router>
-            </CookiesProvider>
+            <Router history={history}>
+                <Provider store={store}>
+                    <RouteComponent/>
+                </Provider>
+            </Router>
         );
     }
 }

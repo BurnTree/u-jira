@@ -1,4 +1,4 @@
-import {LOGOUT, WRITE_USER} from "../acConstant";
+import {LOGOUT, AUTH} from "../acConstant";
 
 const defaultUser = {
     id: '',
@@ -6,12 +6,12 @@ const defaultUser = {
     role: ''
 }
 
-function user(user = defaultUser, action) {
+function userReducer(user = defaultUser, action) {
     const {type, payload} = action;
 
     switch (type) {
-        case WRITE_USER:
-            return {id: payload.id, name: payload.name, role: payload.role};
+        case AUTH:
+            return {...payload.user};
         case LOGOUT:
             return {...defaultUser}
         default:
@@ -19,4 +19,4 @@ function user(user = defaultUser, action) {
     }
 }
 
-export default user
+export default userReducer

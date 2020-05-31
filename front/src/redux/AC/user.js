@@ -12,7 +12,7 @@ export function writeUser(id, name, role) {
 }
 
 export function logout() {
-    return{
+    return {
         type: LOGOUT
     }
 }

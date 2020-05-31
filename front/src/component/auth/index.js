@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Label, Input, ModalHeader, ModalBody,} from 'reactstrap';
-import Modal from "reactstrap/es/Modal";
 import {connect} from "react-redux";
-import {withCookies} from "react-cookie";
-import {Redirect} from "react-router-dom";
 
 import {STUDENT, TEACHER} from "../../helpers";
-import {authUser} from '../../redux/AC/student'
-import axios from 'axios';
-import history from '../../history';
+import {authentication} from "../../redux/AC/general";
 
 class Auth extends Component {
 
@@ -17,7 +11,7 @@ class Auth extends Component {
         this.state = {
             login: '',
             password: '',
-            role: STUDENT
+            role: TEACHER
         }
     }
 
@@ -35,52 +29,35 @@ class Auth extends Component {
 
     sendData = (e) => {
         e.preventDefault()
-        let path;
-        console.log('role: ', this.state.role)
-        if (this.state.role === STUDENT)
-            path = 'http://localhost:8080/api/student/auth'
-        if (this.state.role === TEACHER)
-            path = 'http://localhost:8080/api/teacher/auth'
-        axios.get(path,
-            {params: {login: this.state.login, pass: this.state.password}})
-            .then(res => {
-                this.props.cookies.set('user', {id: res.data.id, role: this.state.role}, {path: '/'})
-                history.push("/home")
-            })
-            .catch(err => console.log('error: ', err))
+        const {login, password, role} = this.state
+        this.props.auth(login, password, role)
     }
 
     render() {
+        const {role} = this.state;
         return (
             <div>
-                <Modal isOpen={true}>
-                    <ModalHeader>Auth</ModalHeader>
-                    <ModalBody>
-                        <Form>
-                            <FormGroup>
-                                <Input type="select" name="select" id="exampleSelect"
-                                       onChange={(e) => this.changeRole(e.target.value)}>
-                                    <option value={STUDENT}>student</option>
-                                    <option value={TEACHER}>teacher</option>
-                                </Input>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="login">Login</Label>
-                                <Input type="text" onChange={(e) => this.changeLogin(e.target.value)} name="login"
-                                       id="login" placeholder="Login"/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="password">Password</Label>
-                                <Input type="password" onChange={(e) => this.changePassword(e.target.value)}
-                                       name="password" id="password" placeholder="Password"/>
-                            </FormGroup>
-                            <Button onClick={(e) => this.sendData(e)}>Submit</Button>
-                        </Form>
-                    </ModalBody>
-                </Modal>
+                <div className="auth">
+                    <h2 className="mb-4 text-center">Авторизация</h2>
+                    <div className="row mb-3">
+                        <div className="col pr-0">
+                            <button className={`float-right choiceElement px-5 ${role===TEACHER ? `activeElement` : ``}`} onClick={ev => this.changeRole(TEACHER)}>Препод</button>
+                        </div>
+                        <div className="col pl-0">
+                            <button className={`float-left choiceElement px-5 ${role===STUDENT ? `activeElement` : ``}`} onClick={ev => this.changeRole(STUDENT)}>Студент</button>
+                        </div>
+                    </div>
+                    <input type="text" className="mb-3" onChange={(e) => this.changeLogin(e.target.value)}
+                           name="login" id="login" placeholder="Логин"/>
+                    <input type="password" className="mb-3" onChange={(e) => this.changePassword(e.target.value)}
+                           name="password" id="password" placeholder="Пароль"/>
+                    <button className="submitButton" onClick={(e) => this.sendData(e)}>Войти</button>
+                </div>
             </div>
         );
     }
 }
 
-export default connect((state) => ({user: state.student}), {authUser})(withCookies(Auth));
+const mapDispatchToProps = (dispatch, ownProps) => ({auth: (login, psw, role) => dispatch(authentication(login, psw, role, ownProps.history.push))})
+
+export default connect((state) => ({user: state}), mapDispatchToProps)(Auth);
