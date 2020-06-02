@@ -3,6 +3,7 @@ package com.bntu.project.backend.entity;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,16 @@ public class Task {
 
     @Column(name = "name")
     private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "created")
+    private Timestamp created;
+    @Column(name = "deadline")
+    private Timestamp deadline;
+    @Column(name = "changed")
+    private Timestamp changed;
+    @Column(name = "comments")
+    private String comments;
 
     @ManyToOne
     @JoinColumn (name = "status")
@@ -38,6 +49,7 @@ public class Task {
 //    public void setProject(Project project) {
 //        this.project = project;
 //    }
+
     public String getName() {
         return name;
     }
@@ -51,6 +63,41 @@ public class Task {
     }
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
+    }
+
+    public Timestamp getChanged() {
+        return changed;
+    }
+    public void setChanged(Timestamp changed) {
+        this.changed = changed;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     @Override

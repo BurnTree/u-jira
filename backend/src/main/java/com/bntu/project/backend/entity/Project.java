@@ -1,6 +1,7 @@
 package com.bntu.project.backend.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -9,9 +10,16 @@ public class Project {
     @Id
     @Column(name = "id")
     private int id;
-
     @Column(name = "name")
     private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "created")
+    private Timestamp created;
+    @Column(name = "deadline")
+    private Timestamp deadline;
+    @Column(name = "changed")
+    private Timestamp changed;
 
     @ManyToOne
     @JoinColumn(name = "student")
@@ -37,6 +45,34 @@ public class Project {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Timestamp getCreated() {
+        return created;
+    }
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
+
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
+    }
+
+    public Timestamp getChanged() {
+        return changed;
+    }
+    public void setChanged(Timestamp changed) {
+        this.changed = changed;
     }
 
     public Student getStudent() {
