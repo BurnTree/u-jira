@@ -1,5 +1,6 @@
 package com.bntu.project.backend.service.impl;
 
+import com.bntu.project.backend.dto.ProjectsStudentTableDto;
 import com.bntu.project.backend.entity.Project;
 import com.bntu.project.backend.repositories.ProjectRepository;
 import com.bntu.project.backend.repositories.TaskRepository;
@@ -8,6 +9,7 @@ import com.bntu.project.backend.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,9 +63,19 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepo.findAllBySubjectTeacherId(teacherId);
     }
 
-//    @Override
-//    public float getRatingProject(int idProject) {
-//        Task task = taskRepo.findByProjectAndStatus(idProject, 3);
-//        return taskService.getKoefRate(task.getId());
-//    }
+    @Override
+    public List<ProjectsStudentTableDto> projectTableForStudent(int studentId) {
+        List<ProjectsStudentTableDto> tableContent = new ArrayList<>();
+        List<Project> projects = projectRepo.findAllByStudentId(studentId);
+        for(Project project: projects){
+            ProjectsStudentTableDto projectRow = new ProjectsStudentTableDto();
+            projectRow.setId(project.getId());
+            projectRow.setName(project.getName());
+            projectRow.setTeacherName(project.getSubject().getTeacher().getName());
+            projectRow.setSubject(project.getSubject().getName());
+            projectRow.setCountTasks(taskRepo.getCountUnresolvedTasksInProject(project.getId()));
+            tableContent.add(projectRow);
+        }
+        return tableContent;
+    }
 }

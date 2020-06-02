@@ -13,4 +13,6 @@ public interface TaskRepository extends JpaRepository<Task, TaskPK> {
     List<Task> findAllById_Project(int project);
     @Query(value = "SELECT task_id FROM task where project = :projectId order by task_id DESC LIMIT 1", nativeQuery = true)
     int lastTaskInProject(int projectId);
+    @Query(value = "select count(*) from task where project = :projectId and status = 1 or status = 2", nativeQuery = true)
+    int getCountUnresolvedTasksInProject(int projectId);
 }

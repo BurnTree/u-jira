@@ -47,6 +47,7 @@ public class TeacherServiceImpl implements TeacherService {
     public UserDto auth(AuthDto auth) {
         Teacher teacher = teacherRepo.getByLoginAndPsw(auth.getLogin(), auth.getPsw());
         UserDto tchDto = new UserDto();
+        tchDto.setId(teacher.getId());
         tchDto.setName(teacher.getName());
         tchDto.setRole(Role.TEACHER);
         return tchDto;

@@ -40,4 +40,9 @@ public class ProjectController {
     public ResponseEntity<Project> add(@RequestBody Project project) {
         return new ResponseEntity<>(projectService.add(project), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/studentTable")
+    public ResponseEntity studentProjectTable(@RequestParam int student) {
+        return ResponseEntity.ok(projectService.projectTableForStudent(student));
+    }
 }

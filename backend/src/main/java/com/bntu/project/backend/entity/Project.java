@@ -9,6 +9,10 @@ public class Project {
     @Id
     @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "student")
     private Student student;
@@ -26,6 +30,13 @@ public class Project {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Student getStudent() {

@@ -1,5 +1,6 @@
 package com.bntu.project.backend.service;
 
+import com.bntu.project.backend.dto.ProjectsStudentTableDto;
 import com.bntu.project.backend.entity.Project;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface ProjectService {
     List<Project> getAllByStudent(int id);
     List<Project> getByStudentAndTeacher(int studentId, int teacherId);
     List<Project> getByTeacher(int teacherId);
-//    float getRatingProject(int idProject);
+    List<ProjectsStudentTableDto> projectTableForStudent(int studentId);
 }
