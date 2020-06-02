@@ -2,6 +2,10 @@ import {LOAD_PROJECT, LOAD_PROJECTS_TASK} from "../acConstant";
 
 const defaultProject = {
     id: "",
+    status: {
+        id: "",
+        name: ""
+    },
     tasks: []
 }
 

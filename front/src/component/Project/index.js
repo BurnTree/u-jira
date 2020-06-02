@@ -2,22 +2,32 @@ import React, {Component} from 'react';
 import {connect} from "react-redux"
 import {loadProject, loadTasks} from "../../redux/AC/project";
 import _ from 'lodash'
+import Description from "./description";
+import Tasks from "./tasks";
 
 class Project extends Component {
 
     componentDidMount() {
-        console.log("did m")
         this.props.loadProject()
         this.props.loadTasks()
     }
 
     render() {
-        const {project} = this.props
-        const tasksComponent = _.map(_.get(project, "tasks"), (task) => (<h1>{task.name}</h1>))
-        console.log("some", project)
+        const {id, name , description, status, created, deadline, changed, tasks} = this.props.project;
         return (
-            <div>
-                {tasksComponent}
+            <div className="row">
+                <div className="col-6">
+                    <Description name={name}
+                                 desc={description}
+                                 status={status.name}
+                                 created={created}
+                                 deadline={deadline}
+                                 changed={changed}
+                    />
+                </div>
+                <div className="col-6">
+                    <Tasks projectId={id} tasks={tasks}/>
+                </div>
             </div>
         );
     }

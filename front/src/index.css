@@ -49,3 +49,17 @@ body {
     background-color: #E5E5E5;
 }
 
+.headerDesc {
+    text-align: center;
+    font-size: 28px;
+    background-color: #FF906C !important;
+    color: #f8f9fa !important;
+    margin-bottom: 40px;
+}
+
+.cellDesc {
+    background-color: white;
+    border: solid 1px #36A188;
+    color: black;
+    margin-bottom: 20px;
+}
