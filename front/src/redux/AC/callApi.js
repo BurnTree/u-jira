@@ -14,7 +14,6 @@ export const fetchTasksForProject = (projectId) =>
         .then(response => response.json())
 
 export const fetchAuth = (auth, role) => {
-    console.log("auth: " + JSON.stringify(auth))
     return fetch(`${api}/auth?role=${role}`, {
         method: 'POST',
         body: JSON.stringify(auth),
@@ -26,4 +25,9 @@ export const fetchAuth = (auth, role) => {
             if (response.ok) return response.json()
             throw new Error("всё плохо")
         })
+}
+
+export const fetchProjectsForStudent = (studentId) => {
+    return fetch(`${api}/project/studentTable?student=${studentId}`, {})
+        .then(response => response.json())
 }

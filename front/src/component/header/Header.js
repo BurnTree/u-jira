@@ -1,36 +1,40 @@
 import React, {Component} from 'react';
-import {Button, Media} from 'reactstrap'
 import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom'
 import {logout} from "../../redux/AC/user";
-import {withRouter} from 'react-router'
 
 class Header extends Component {
-    logout = () => {
-        this.props.logout();
-        this.props.history.push('/auth')
+
+    componentDidMount() {
+        const {user} = this.props;
+        if (!user.isAuth) this.props.logout()
     }
 
     render() {
         const {user} = this.props;
         const {pathname} = this.props.history.location;
         return (pathname === "/auth") ? null :
-            <Media className="border-bottom">
-                <Media left>
+            <div className="row mb-5">
+                <div className="col-4">
+
+                </div>
+                <div className="col-1">
                     <img width="100px" height="100px"
                          src="https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png"
                          alt="user"/>
-                </Media>
-                <Media body>
+                </div>
+                <div className="col-4 py-2">
                     <h3>{user.name}</h3>
-                    <h3>{user.role}</h3>
-                </Media>
-                <Media right>
-                    <Button className="m-4 px-4" onClick={() => this.logout()}>Logout</Button>
-                </Media>
-            </Media>
+                    <h4>{user.role}</h4>
+                </div>
+                <div className="col-3">
+                    <button className="greenButton" onClick={() => this.props.logout()}>Выход</button>
+                </div>
+            </div>
     }
 }
 
+const mapDispatchToProps = (dispatch, ownProps) =>
+    ({logout: () => dispatch(logout(ownProps.history.push))})
 
-
-export default withRouter(connect((state) => ({user: state.user}), {logout})(Header));
+export default withRouter(connect((state) => ({user: state.user}), mapDispatchToProps)(Header));

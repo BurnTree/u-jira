@@ -1,4 +1,4 @@
-export const TEACHER = 'TEACHER'
-export const STUDENT = 'STUDENT'
+export const TEACHER = 'teacher'
+export const STUDENT = 'student'
 export const ADMIN = 'ADMINISTRATOR'
 

@@ -33,6 +33,7 @@ class Auth extends Component {
         this.props.auth(login, password, role)
     }
 
+
     render() {
         const {role} = this.state;
         return (

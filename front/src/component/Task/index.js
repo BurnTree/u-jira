@@ -10,7 +10,6 @@ class Task extends Component {
     }
 
     render() {
-        console.log("what is state: ", this.props.task)
         return (
             <div>
                 <h2>{this.props.task.name} </h2>

@@ -3,7 +3,7 @@ body {
     font-family: 'Roboto Slab', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: url("image/GrMw6un1VNc.jpg") no-repeat center center fixed;
+    background: url("image/back.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -23,6 +23,14 @@ body {
 }
 
 .auth .submitButton {
+    background: #36A188;
+    color: #f8f9fa;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+.greenButton {
     background: #36A188;
     color: #f8f9fa;
     border: none;

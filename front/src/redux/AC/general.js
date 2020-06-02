@@ -9,11 +9,14 @@ export const writeUser = (user) => ({
 export const authentication = (login, psw, role, push) => dispatch => {
     fetchAuth({login, psw}, role)
         .then(data => {
-            console.log(" data " + data)
             dispatch(writeUser(data))
-            push("/home")
+            push("/subjects")
         })
         .catch(error => {
             console.log("its error" + error)
         })
+}
+
+export const transfer = (call, path) => dispatch => {
+    call(path)
 }

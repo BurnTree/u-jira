@@ -3,7 +3,8 @@ import {LOGOUT, AUTH} from "../acConstant";
 const defaultUser = {
     id: '',
     name: '',
-    role: ''
+    role: '',
+    isAuth: false
 }
 
 function userReducer(user = defaultUser, action) {
@@ -11,7 +12,7 @@ function userReducer(user = defaultUser, action) {
 
     switch (type) {
         case AUTH:
-            return {...payload.user};
+            return {...payload.user, isAuth: true};
         case LOGOUT:
             return {...defaultUser}
         default:
