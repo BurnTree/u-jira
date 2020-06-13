@@ -18,7 +18,7 @@ class Project extends Component {
             <div className="row">
                 <div className="col-6">
                     <Description name={name}
-                                 desc={description}
+                                 description={description}
                                  status={status.name}
                                  created={created}
                                  deadline={deadline}
@@ -32,11 +32,6 @@ class Project extends Component {
         );
     }
 }
-
-// const mapStateToProps = ({user, projects}) => ({
-//     user,
-//     projects
-// })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     loadProject: () => dispatch(loadProject(ownProps.match.params.idProject)),

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux"
 import {loadTask} from "../../redux/AC/task";
+import Description from "./description";
+import TaskHistory from "./taskHistory";
 
 
 class Task extends Component {
@@ -10,11 +12,20 @@ class Task extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <h2>{this.props.task.name} </h2>
+        const {name, description, status, created, deadline, changed} = this.props.task;
+        return <div className="row">
+            <div className="col">
+                <Description name={name}
+                             description={description}
+                             status={status}
+                             created={created}
+                             deadline={deadline}
+                             changed={changed}/>
             </div>
-        );
+            <div className="col">
+                <TaskHistory/>
+            </div>
+        </div>
     }
 }
 

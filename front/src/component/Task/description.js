@@ -8,7 +8,7 @@ class Description extends Component {
             <div>
                 <DHeader name={name}/>
                 <DCell_4_8 title="Описание:" body={description}/>
-                <DCell_6_6 title="Статус:" body={status}/>
+                <DCell_6_6 title="Статус:" body={_.get(status, "name")}/>
                 <DCell_6_6 title="Дата создания:" body={created}/>
                 <DCell_6_6 title="Дата сдачи:" body={deadline}/>
                 <DCell_6_6 title="Изменен:" body={changed}/>
